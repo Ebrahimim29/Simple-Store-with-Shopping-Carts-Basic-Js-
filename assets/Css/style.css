@@ -1,0 +1,61 @@
+@font-face {
+    font-family: yekan;
+    src: url("/assets/font/persianFont/yekan-font/yekan-regular.woff");
+    src: url("/assets/font/persianFont/yekan-font/yekan-regular.ttf");
+
+}
+
+*{
+    font-family: yekan;
+}
+
+body{
+    background: url("/assets/images/background.jpg") center/cover , linear-gradient(to top , black , white);
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background: linear-gradient(to left , rgba(0,0,255,0.504) , rgba(183,0,183,0.635));
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 20px gray;
+}
+
+.container{
+    max-width: 900px;
+    height: calc(100vh - 4rem);
+    margin: 2rem auto;
+    background: #ffffffd0;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    box-shadow: 0 0 25px rgba(128, 128, 128, 0.4);
+}
+
+.products , .cart{
+    flex: 1;
+}
+
+.products-list{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 1.5rem;
+}
+
+.products{
+    background: rgba(255, 0, 0, 0.315);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px #0001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
