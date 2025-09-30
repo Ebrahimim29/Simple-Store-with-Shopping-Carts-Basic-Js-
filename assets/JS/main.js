@@ -34,9 +34,9 @@ products.forEach(product =>{
     div.className = "product";
     div.innerHTML = `
     <img src="${product.image}" alt="${product.title}">
-    <div class="product-title">${product.title}</div>
+    <div class="product-title animate-pulse">${product.title}</div>
     <div class="product-price">${product.price.toLocaleString()} تومان</div>
-    <button class="add-btn" data-id="${product.id}">افزودن به سبد</button>`
+    <button class="add-btn animate-bounce" data-id="${product.id}">افزودن به سبد</button>`
     ;
     productsList.appendChild(div);
 });
@@ -50,3 +50,48 @@ productsList.addEventListener("click" , function (e) {
     addToCart(id);
    } 
 });
+
+// ...Existing Code...
+// سبد خرید به صورت آرایه ساده
+const cart = [];
+
+// افزودن محصول به سبد خرید
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const item = cart.find(i => i.id === productId);
+    if(item){
+        item.qty += 1;
+    }else{
+        cart.push({id: product.id, title: product.title, price: product.price, qty: 1});
+    }
+    
+    renderCart();
+}
+
+// نمایش سبد خرید
+function renderCart() {
+    const cartList = document.getElementById("cart-list");
+    cartList.innerHTML = "";
+
+    cart.forEach(item =>{
+        const li = document.createElement("li");
+        li.className = "cart-item";
+        li.innerHTML = `
+        <span class="cart-item-title">${item.title}</span>
+        <span class="cart-item-qty">${item.qty}</span>
+        <button class="remove-btn" data-id="${item.id}">حذف</button>
+        `;
+        cartList.appendChild(li);
+    });
+}
+
+// حذف محصول از سبد خرید
+function removeFromCart(productId) {
+    const index = cart.findIndex(i => i.id === productId);
+    if(index !== -1){
+        cart.splice(index , 1);
+        renderCart();
+    }
+}
